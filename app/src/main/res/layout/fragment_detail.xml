@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ashu.techswtask.ui.viewmodels.DetailViewModel" />
+
+        <variable
+            name="click"
+            type="com.ashu.techswtask.listeners.DetailOnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_chevron_left_24" />
+
+        <TextView
+            android:id="@+id/foodTitle"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="Food Name"
+            android:text="@{viewModel.selectedFood.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardimgView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodTitle">
+
+            <ImageView
+                android:id="@+id/foodImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.selectedFood.image}"
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                />
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/foodPrice"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            tools:text="Rs.3878"
+            app:textViewBinding="@{viewModel.selectedFood.price}"
+
+            app:layout_constraintStart_toStartOf="@+id/cardimgView"
+            app:layout_constraintTop_toBottomOf="@+id/cardimgView" />
+
+        <TextView
+            android:id="@+id/foodDetail"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Lorem ipsum dolor sit amet. Sit repellendus omnis ad ducimus nulla eos aliquam eius sit optio quaerat et enim voluptatum. "
+            app:layout_constraintEnd_toEndOf="@+id/cardimgView"
+            app:layout_constraintStart_toStartOf="@id/foodPrice"
+            app:layout_constraintTop_toBottomOf="@+id/foodPrice" />
+
+        <CheckBox
+            android:id="@+id/cbHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_fav_item"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/addToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="@{(view) -> click.onOpenCart(view, viewModel.selectedFood)}"
+
+            android:text="Add to cart"
+            app:layout_constraintEnd_toEndOf="@+id/cardimgView"
+            app:layout_constraintStart_toStartOf="@+id/cardimgView"
+            app:layout_constraintTop_toBottomOf="@+id/foodDetail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
