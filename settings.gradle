@@ -1,0 +1,2 @@
+rootProject.name='Techstalwart'
+include ':app'

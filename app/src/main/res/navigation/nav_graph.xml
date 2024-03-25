@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/foodListingFragment">
+
+
+    <fragment
+        android:id="@+id/foodListingFragment"
+        android:name="com.example.techstalwart.ui.fragments.FoodListingFragment"
+        android:label="FoodListingFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.techstalwart.ui.fragments.FavFragment"
+        android:label="FavFragment" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.techstalwart.ui.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>
