@@ -1,17 +1,16 @@
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
-apply plugin: 'dagger.hilt.android.plugin'
-
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.techstalwart"
+        applicationId "com.ashu.techswtask"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -29,8 +28,8 @@ android {
     buildFeatures{
         viewBinding true
         dataBinding true
-    }
 
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -72,6 +71,7 @@ dependencies {
 
     // Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
     // Navigation Components
@@ -82,36 +82,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
-    // Google Maps Location Services
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
-    // Dagger Core
-    implementation "com.google.dagger:dagger:2.28.1"
-    kapt "com.google.dagger:dagger-compiler:2.25.2"
 
-    // Dagger Android
-    api 'com.google.dagger:dagger-android:2.28.1'
-    api 'com.google.dagger:dagger-android-support:2.28.1'
-    kapt 'com.google.dagger:dagger-android-processor:2.23.2'
-
-    //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
-
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
-
-    // Easy Permissions
-    implementation 'pub.devrel:easypermissions:3.0.0'
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    // MPAndroidChart
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
 
 
 }

@@ -7,93 +7,66 @@
 
         <variable
             name="food"
-            type="com.example.techstalwart.db.Food" />
+            type="com.ashu.techswtask.db.Food" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/homeRVItem"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/border_bottom">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_bottom"
+        android:padding="16dp">
+
 
         <ImageView
-            android:id="@+id/imgRecyclerItem"
-            android:layout_width="73.33dp"
-            android:layout_height="73.33dp"
-            android:layout_marginLeft="13.33dp"
-            android:layout_marginTop="13.33dp"
-            android:layout_marginRight="13.33dp"
-            android:layout_marginBottom="13.33dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/baseline_fastfood_24"
+            android:id="@+id/cartImage"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{food.image}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guideLine1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideLine1"
+        <TextView
+            android:id="@+id/cartFoodName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="100dp" />
+            android:layout_marginStart="16dp"
+            android:text="@{food.name}"
+            app:layout_constraintBottom_toTopOf="@+id/cartItemPrice"
+            app:layout_constraintStart_toEndOf="@+id/cartImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Item Name" />
 
         <TextView
-            android:id="@+id/txtItemName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Item Name"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtItemSellerName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideLine1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtItemSellerName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Item Shop Name"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/txtItemPrice"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideLine1"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemName" />
-
-        <TextView
-            android:id="@+id/txtItemPrice"
+            android:id="@+id/cartItemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16.67dp"
-            android:layout_marginBottom="20dp"
-            android:text="Rs. 23,4040"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cartImage"
+            app:layout_constraintTop_toBottomOf="@+id/cartFoodName"
+            app:textViewBinding="@{food.price}"
+            tools:text="Rs. 23,4040" />
 
-            app:layout_constraintStart_toStartOf="@id/guideLine1"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemSellerName" />
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleSmall"
+        <ImageView
+            android:id="@+id/btnAddToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:theme="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_marginStart="4dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_add_shopping_cart_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtItemSellerName" />
+            app:layout_constraintStart_toEndOf="@+id/cartFoodName"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

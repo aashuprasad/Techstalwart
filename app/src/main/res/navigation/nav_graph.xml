@@ -2,20 +2,35 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/foodListingFragment">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment
-        android:id="@+id/foodListingFragment"
-        android:name="com.example.techstalwart.ui.fragments.FoodListingFragment"
-        android:label="FoodListingFragment">
+        android:id="@+id/homeFragment"
+        android:name="com.ashu.techswtask.ui.fragments.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/homeFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.techstalwart.ui.fragments.FavFragment"
+        android:name="com.ashu.techswtask.ui.fragments.FavFragment"
         android:label="FavFragment" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.techstalwart.ui.fragments.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:name="com.ashu.techswtask.ui.fragments.CartFragment"
+        android:label="CartFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.ashu.techswtask.ui.fragments.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="selectedFood"
+            app:argType="com.ashu.techswtask.db.Food" />
+    </fragment>
 </navigation>
