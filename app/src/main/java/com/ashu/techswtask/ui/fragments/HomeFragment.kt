@@ -18,7 +18,7 @@ import com.ashu.techswtask.R
 import com.ashu.techswtask.databinding.FragmentHomeBinding
 import com.ashu.techswtask.db.Food
 import com.ashu.techswtask.ui.adapters.HomeAdapter
-import com.ashu.techswtask.ui.viewmodels.HomeViewModel
+import com.ashu.techswtask.viewmodels.HomeViewModel
 import com.ashu.techswtask.util.Resource
 
 

@@ -1,4 +1,4 @@
-package com.ashu.techswtask.ui.viewmodels
+package com.ashu.techswtask.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

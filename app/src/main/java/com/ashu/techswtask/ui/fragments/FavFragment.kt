@@ -12,8 +12,8 @@ import com.ashu.techswtask.R
 import com.ashu.techswtask.db.Food
 import com.ashu.techswtask.db.FoodDatabase
 import com.ashu.techswtask.ui.adapters.FavListAdapter
-import com.ashu.techswtask.ui.viewmodels.FavViewModel
-import com.ashu.techswtask.ui.viewmodels.FavViewModelFactory
+import com.ashu.techswtask.viewmodels.FavViewModel
+import com.ashu.techswtask.viewmodels.FavViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

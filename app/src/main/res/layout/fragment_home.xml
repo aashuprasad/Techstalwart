@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.ashu.techswtask.ui.viewmodels.HomeViewModel" />
+            type="com.ashu.techswtask.viewmodels.HomeViewModel" />
     </data>
 
 

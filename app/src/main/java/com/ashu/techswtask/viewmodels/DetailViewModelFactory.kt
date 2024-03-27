@@ -1,4 +1,4 @@
-package com.ashu.techswtask.ui.viewmodels
+package com.ashu.techswtask.viewmodels
 
 import android.app.Application
 import android.graphics.Movie

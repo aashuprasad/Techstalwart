@@ -15,8 +15,8 @@ import com.ashu.techswtask.db.Food
 import com.ashu.techswtask.db.FoodDao
 import com.ashu.techswtask.db.FoodDatabase
 import com.ashu.techswtask.listeners.DetailOnClickListener
-import com.ashu.techswtask.ui.viewmodels.DetailViewModel
-import com.ashu.techswtask.ui.viewmodels.DetailViewModelFactory
+import com.ashu.techswtask.viewmodels.DetailViewModel
+import com.ashu.techswtask.viewmodels.DetailViewModelFactory
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
