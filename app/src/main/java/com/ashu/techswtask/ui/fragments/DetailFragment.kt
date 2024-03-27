@@ -1,6 +1,5 @@
 package com.ashu.techswtask.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -82,6 +81,8 @@ class DetailFragment : Fragment(), DetailOnClickListener {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.flFragment, cartFragment)
+        transaction.addToBackStack(null) // Add the current fragment to the back stack
+
         transaction.commit()
     }
 

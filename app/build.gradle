@@ -54,7 +54,6 @@ dependencies {
 
     // Architectural Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-
     implementation 'com.google.code.gson:gson:2.9.0'
 
 
@@ -82,13 +81,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
-
-
-
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
-
-
-
 }

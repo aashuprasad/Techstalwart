@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
                 when(destination.id) {
                     R.id.homeFragment, R.id.favoriteFragment, R.id.cartFragment ->
                         bottomNavigationView.visibility = View.VISIBLE
+
                     else -> bottomNavigationView.visibility = View.GONE
                 }
             }
