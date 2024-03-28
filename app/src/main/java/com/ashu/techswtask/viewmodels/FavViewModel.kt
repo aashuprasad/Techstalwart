@@ -11,10 +11,7 @@ class FavViewModel(private val myDao: FoodDao) : ViewModel() {
     suspend fun getAllData(): List<Food> {
         return myDao.getAllFood()
     }
-    /*private val myDatabase = FoodDatabase.getInstance()
-    private val myDao = myDatabase.foodDao()
 
-    val myData: List<Food> = myDao.getFavoriteFoods()*/
 }
 
 class FavViewModelFactory(

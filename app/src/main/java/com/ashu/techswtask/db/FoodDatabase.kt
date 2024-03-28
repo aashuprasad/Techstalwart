@@ -44,8 +44,8 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(food:Food)
 
-    @Update
-    suspend fun update(food:Food)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(item: Food)
 
     @Delete
     suspend fun delete(food:Food)
@@ -54,6 +54,6 @@ interface FoodDao {
     suspend fun getAllFood(): List<Food>
 
 
-    @Query("SELECT * FROM food_table WHERE id= :id")
-    suspend fun getFoodById(id: Int): Food?
+    @Query("SELECT * FROM food_table")
+    fun getAllFoodLD(): LiveData<List<Food>>
 }

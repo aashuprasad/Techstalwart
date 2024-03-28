@@ -1,6 +1,7 @@
 package com.ashu.techswtask.db
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -16,7 +17,9 @@ data class Food(
     @SerializedName("image") val image: String,
     val name: String,
     val price: Double,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    @ColumnInfo(name = "item_amount")
+    var amount: Int = 0
 
 ) : Parcelable {
 

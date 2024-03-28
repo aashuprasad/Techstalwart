@@ -3,15 +3,19 @@ package com.ashu.techswtask.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ashu.techswtask.R
 import com.ashu.techswtask.databinding.CartItemBinding
+import com.ashu.techswtask.db.Food
+import com.ashu.techswtask.viewmodels.CartViewModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 
 class CartAdapter(
-    private val CartItems: MutableList<String>,
-    private val CartItemPrice: MutableList<String>,
-    private var CartImage: MutableList<Int>
+    var items: List<Food>,
+    private val viewModel: CartViewModel
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    private val itemQuantities = IntArray(CartItems.size){1}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,51 +24,41 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.bind(position)
     }
-    override fun getItemCount(): Int = CartItems.size
+    override fun getItemCount(): Int = items.size
 
     inner class CartViewHolder(private val binding: CartItemBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
+            val curShoppingItem = items[position]
+
             binding.apply {
-                val quantity = itemQuantities[position]
-                cartFoodName.text = CartItems[position]
-                cartItemPrice.text = CartItemPrice[position]
-                cartImage.setImageResource(CartImage[position])
-                cartItemQuantity.text = quantity.toString()
+                val quantity = "${curShoppingItem.amount}"
+                cartFoodName.text = curShoppingItem.name
+                cartItemPrice.text = "${curShoppingItem.price}"
+                Glide.with(itemView)
+                    .load(curShoppingItem.image)
+                    .apply(
+                        RequestOptions()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.ic_broken_image)
+                    )
+                    .into(cartImage)
+                cartItemQuantity.text = quantity
 
                 minusButton.setOnClickListener {
-                    decreaseQuantity(position)
-                }
-                plusButton.setOnClickListener {
-                    increaseQuantity(position)
-                }
-                deleteButton.setOnClickListener {
-                    var itemPosition = adapterPosition
-                    if(itemPosition != RecyclerView.NO_POSITION){
-                        deleteItem(itemPosition)
+                    if (curShoppingItem.amount > 0) {
+                        curShoppingItem.amount--
+                        viewModel.upsert(curShoppingItem)
                     }
                 }
+                plusButton.setOnClickListener {
+                    curShoppingItem.amount++
+                    viewModel.upsert(curShoppingItem)
+                }
+                deleteButton.setOnClickListener {
+                    viewModel.delete(curShoppingItem)
+                }
             }
-        }
-        private fun decreaseQuantity(position: Int) {
-            if (itemQuantities[position] > 1) {
-                itemQuantities[position]--
-                binding.cartItemQuantity.text = itemQuantities[position].toString()
-            }
-        }
-
-        private fun increaseQuantity(position: Int) {
-            if (itemQuantities[position] < 10) {
-                itemQuantities[position]++
-                binding.cartItemQuantity.text = itemQuantities[position].toString()
-            }
-        }
-
-        private fun deleteItem(position: Int) {
-            CartItems.removeAt(position)
-            CartItemPrice.removeAt(position)
-            CartImage.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, CartItems.size)
         }
     }
 

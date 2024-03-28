@@ -32,7 +32,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 
 @BindingAdapter("textViewBinding")
 fun setText(view: TextView, value: Double?) {
-    view.text = ("Rs." + value?.toString() + "000/-") ?: ""
+    view.text = ("Rs." + value?.toString() + "/-") ?: ""
 }
 
 

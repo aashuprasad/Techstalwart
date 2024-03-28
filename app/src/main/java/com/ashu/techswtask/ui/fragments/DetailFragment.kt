@@ -13,13 +13,15 @@ import com.ashu.techswtask.databinding.FragmentDetailBinding
 import com.ashu.techswtask.db.Food
 import com.ashu.techswtask.db.FoodDao
 import com.ashu.techswtask.db.FoodDatabase
-import com.ashu.techswtask.listeners.DetailOnClickListener
+import com.ashu.techswtask.listeners.AddDialogListener
+import com.ashu.techswtask.viewmodels.CartViewModel
+import com.ashu.techswtask.viewmodels.CartViewModelFactory
 import com.ashu.techswtask.viewmodels.DetailViewModel
 import com.ashu.techswtask.viewmodels.DetailViewModelFactory
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class DetailFragment : Fragment(), DetailOnClickListener {
+class DetailFragment : Fragment() {
 
     private lateinit var foodDao: FoodDao
 
@@ -34,12 +36,12 @@ class DetailFragment : Fragment(), DetailOnClickListener {
 
         val foodDatabase = FoodDatabase.getInstance(requireContext())
         foodDao = foodDatabase.foodDao()
+
         val food = DetailFragmentArgs.fromBundle(requireArguments()).selectedFood
-        val viewModelFactory = DetailViewModelFactory(food, application)
-        binding.viewModel =
-            ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
+        val viewModel : DetailViewModel = ViewModelProvider(this, DetailViewModelFactory(foodDao,food, application))[DetailViewModel::class.java]
+        binding.viewModel = viewModel
 
-
+        binding.cbHeart.isChecked = food.isFavorite
         binding.cbHeart.setOnCheckedChangeListener { checkBox, isChecked ->
 
             if (isChecked) {
@@ -59,31 +61,20 @@ class DetailFragment : Fragment(), DetailOnClickListener {
             }
         }
 
-        binding.click = this
 
+        binding.addToCart.setOnClickListener {
+            AddShoppingItemDialog(
+                food,
+                requireContext(),
+                object : AddDialogListener {
+                    override fun onAddButtonClicked(item: Food) {
+                        viewModel.upsert(item)
+                    }
+                }).show()
+        }
         setHasOptionsMenu(false)
         return binding.root
 
-    }
-
-
-
-    override fun onOpenCart(view: View, foodItem: Food) {
-        // Create a new instance of the CartFragment
-        val cartFragment = CartFragment()
-
-        // Pass the quantity as an argument to the CartFragment
-        val args = Bundle()
-//        args.putInt("quantity", quantity)
-        cartFragment.arguments = args
-
-        // Replace the current fragment with the CartFragment
-        val fragmentManager = requireActivity().supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.flFragment, cartFragment)
-        transaction.addToBackStack(null) // Add the current fragment to the back stack
-
-        transaction.commit()
     }
 
     override fun onDestroyView() {
