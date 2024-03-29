@@ -18,6 +18,7 @@ data class Food(
     val name: String,
     val price: Double,
     var isFavorite: Boolean = false,
+    var isCart:Boolean = false,
     @ColumnInfo(name = "item_amount")
     var amount: Int = 0
 

@@ -26,8 +26,11 @@ class AddShoppingItemDialog(var item:Food,context: Context, var addDialogListene
 
 
             item.amount = amount
-
+            if (amount>0){
+                item.isCart = true
+            }
             addDialogListener.onAddButtonClicked(item)
+
             Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT)
                 .show()
             dismiss()

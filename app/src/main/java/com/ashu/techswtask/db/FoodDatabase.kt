@@ -50,10 +50,10 @@ interface FoodDao {
     @Delete
     suspend fun delete(food:Food)
     //WHERE isFavorite = 1 ORDER BY name
-    @Query("SELECT * FROM food_table")
+    @Query("SELECT * FROM food_table WHERE isFavorite = 1 ORDER BY name")
     suspend fun getAllFood(): List<Food>
 
 
-    @Query("SELECT * FROM food_table")
+    @Query("SELECT * FROM food_table WHERE isCart = 1 ORDER BY name")
     fun getAllFoodLD(): LiveData<List<Food>>
 }

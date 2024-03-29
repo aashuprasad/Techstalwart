@@ -35,18 +35,20 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     fun bindData(data: Food) {
-        // Bind the data to the views in the item layout
-        nameTextView.text = data.name
+        if (data.isFavorite){
+            // Bind the data to the views in the item layout
+            nameTextView.text = data.name
 
 
-        Glide.with(itemView)
-            .load(data.image)
-            .apply(
-                RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.loading_animation)
-                    .error(R.drawable.ic_broken_image)
-            )
-            .into(foodImageView)
+            Glide.with(itemView)
+                .load(data.image)
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.loading_animation)
+                        .error(R.drawable.ic_broken_image)
+                )
+                .into(foodImageView)
+        }
     }
 }
